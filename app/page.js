@@ -1,10 +1,13 @@
 import Link from "next/link";
 import styles from "./page.module.css";
+import ImageSlideshow from "./components/images/image-slideshow";
 export default function Home() {
   return (
     <>
       <header className={styles.header}>
-        <div className={styles.slideshow}></div>
+        <div className={styles.slideshow}>
+          <ImageSlideshow />
+        </div>
         <div>
           <div className={styles.hero}>
             &nbsp;
@@ -13,7 +16,7 @@ export default function Home() {
           </div>
           <div className={styles.cta}>
             <Link href="/community">Join Community</Link>
-            <Link href="/community">Explore Meals</Link>
+            <Link href="/meals">Explore Meals</Link>
           </div>
         </div>
       </header>
