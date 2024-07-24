@@ -1,4 +1,4 @@
-import ImagePicker from "@/app/components/meals/image-picker";
+import ImagePicker from "@/components/meals/image-picker";
 import styles from "./page.module.css";
 import { shareMeal } from "@/lib/meal-form-action";
 
