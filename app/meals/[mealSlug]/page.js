@@ -13,7 +13,7 @@ export default async function MealsDetail({ params }) {
     <>
       <header className={styles.header}>
         <div className={styles.image}>
-          <Image src={meal.image} fill />
+          <Image src={meal.image} fill alt={meal.title}/>
         </div>
         <div className={styles.headerText}>
           <h1>{meal.title}</h1>
