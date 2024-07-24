@@ -1,8 +1,26 @@
+"use client";
+import { useState } from "react";
 import ImagePicker from "@/components/meals/image-picker";
 import styles from "./page.module.css";
 import { shareMeal } from "@/lib/meal-form-action";
 
 export default function ShareMealPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(event.target);
+
+    try {
+      await shareMeal(formData);
+    } catch (error) {
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <header className={styles.header}>
@@ -12,7 +30,7 @@ export default function ShareMealPage() {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className={styles.main}>
-        <form className={styles.form} action={shareMeal}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.row}>
             <p>
               <label htmlFor="name">Your name</label>
@@ -42,7 +60,9 @@ export default function ShareMealPage() {
           </p>
           <ImagePicker label="Your image" name="image" />
           <p className={styles.actions}>
-            <button type="submit">Share Meal</button>
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Share Meal"}
+            </button>
           </p>
         </form>
       </main>
