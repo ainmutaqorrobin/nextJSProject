@@ -6,14 +6,18 @@ import { notFound } from "next/navigation";
 export default async function MealsDetail({ params }) {
   const meal = getMeal(params.mealSlug);
 
-  if(!meal) notFound();
+  if (!meal) notFound();
 
   meal.instructions = meal.instructions.replace(/\n/g, "<br/>");
   return (
     <>
       <header className={styles.header}>
         <div className={styles.image}>
-          <Image src={meal.image} fill alt={meal.title}/>
+          <Image
+            src={`https://robin-nextjs-share-users-image.s3.amazonaws.com/${meal.image}`}
+            alt={meal.title}
+            fill
+          />
         </div>
         <div className={styles.headerText}>
           <h1>{meal.title}</h1>
